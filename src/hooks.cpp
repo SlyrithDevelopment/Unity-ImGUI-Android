@@ -1,4 +1,5 @@
 #include "includes/hooks.h"
+#include "libs/KittyMemory/KittyScanner.h"
 
 namespace hooks {
 	swapbuffers::orig o_swapbuffers = nullptr;
@@ -20,18 +21,20 @@ namespace hooks {
 					  reinterpret_cast<void**>(&o_swapbuffers)) != 0)
 			return NULL;
 
-		const char* lib_unity = "libunity.so";
+		const char* lib_unity = KittyMemory::getMapsByName("libunity.so");
 
 		do {
 			sleep(1);
 		} while (!utils::is_library_loaded(lib_unity));
-		
+
+		auto maps_unity = KittyMemory::getMapsByName("libunity.so");
+
 		//refer to "Tutorials/Get nativeInject Event Signature.md" to understand this
-		uintptr_t inject_event = utils::find_pattern_in_module(lib_unity, "70 40 2D E9 10 D0 4D E2 02 50 A0 E1 7E CE FF EB");
-		if(inject_event == NULL)
+		auto inject_event = KittyScanner::findRegisterNativeFn(maps_unity, "nativeInjectEvent")
+		if(!inject_event.isValid())
 			return NULL;
 
-		if (DobbyHook(reinterpret_cast<void*>(inject_event), reinterpret_cast<void*>(input::inject_event::hook),
+		if (DobbyHook(reinterpret_cast<void*>(inject_event.fnPtr), reinterpret_cast<void*>(input::inject_event::hook),
 					  reinterpret_cast<void**>(&o_inject_event)) != 0)
 			return NULL;
 

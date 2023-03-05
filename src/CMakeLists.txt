@@ -15,23 +15,29 @@ project("void")
 # Gradle automatically packages shared libraries with your APK.
 
 add_library( # Sets the name of the library.
-             void
+        void
 
-             # Sets the library as a shared library.
-             SHARED
+        # Sets the library as a shared library.
+        SHARED
 
-             # Provides a relative path to your source file(s).
-             main.cpp
-             utils.cpp
-             hooks.cpp
-             menu.cpp
-             imgui/imgui.cpp
-             imgui/imgui_demo.cpp
-             imgui/imgui_draw.cpp
-             imgui/imgui_tables.cpp
-             imgui/imgui_widgets.cpp
-             imgui/imgui_impl_android.cpp
-             imgui/imgui_impl_opengl3.cpp)
+        # Provides a relative path to your source file(s).
+        main.cpp
+        utils.cpp
+        hooks.cpp
+        menu.cpp
+        imgui/imgui.cpp
+        imgui/imgui_demo.cpp
+        imgui/imgui_draw.cpp
+        imgui/imgui_tables.cpp
+        imgui/imgui_widgets.cpp
+        imgui/imgui_impl_android.cpp
+        imgui/imgui_impl_opengl3.cpp
+        libs/KittyMemory/KittyMemory.cpp
+        libs/KittyMemory/MemoryPatch.cpp
+        libs/KittyMemory/MemoryBackup.cpp
+        libs/KittyMemory/KittyUtils.cpp
+        libs/KittyMemory/KittyScanner.cpp
+        libs/KittyMemory/KittyArm64.cpp)
 
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/libs/dobby/include)
 
@@ -42,11 +48,11 @@ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/libs/dobby/include)
 # completing its build.
 
 find_library( # Sets the name of the path variable.
-              log-lib
+        log-lib
 
-              # Specifies the name of the NDK library that
-              # you want CMake to locate.
-              log )
+        # Specifies the name of the NDK library that
+        # you want CMake to locate.
+        log)
 
 set(DOBBY_LIB ${CMAKE_CURRENT_SOURCE_DIR}/libs/dobby/${CMAKE_ANDROID_ARCH_ABI}/libdobby.a)
 
@@ -55,12 +61,12 @@ set(DOBBY_LIB ${CMAKE_CURRENT_SOURCE_DIR}/libs/dobby/${CMAKE_ANDROID_ARCH_ABI}/l
 # build script, prebuilt third-party libraries, or system libraries.
 
 target_link_libraries( # Specifies the target library.
-                       void
+        void
 
-                       # Links the target library to the log library
-                       # included in the NDK.
-                       ${log-lib}
-                       ${DOBBY_LIB}
-                       android
-                       EGL
-                       GLESv3)
+        # Links the target library to the log library
+        # included in the NDK.
+        ${log-lib}
+        ${DOBBY_LIB}
+        android
+        EGL
+        GLESv3)
