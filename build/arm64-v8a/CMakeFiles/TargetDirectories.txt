@@ -1,0 +1,12 @@
+/home/finzarosalia14/Unity-ImGUI-Android/build/arm64-v8a/CMakeFiles/void.dir
+/home/finzarosalia14/Unity-ImGUI-Android/build/arm64-v8a/CMakeFiles/edit_cache.dir
+/home/finzarosalia14/Unity-ImGUI-Android/build/arm64-v8a/CMakeFiles/rebuild_cache.dir
+/home/finzarosalia14/Unity-ImGUI-Android/build/arm64-v8a/dobby/CMakeFiles/dobby.dir
+/home/finzarosalia14/Unity-ImGUI-Android/build/arm64-v8a/dobby/CMakeFiles/edit_cache.dir
+/home/finzarosalia14/Unity-ImGUI-Android/build/arm64-v8a/dobby/CMakeFiles/rebuild_cache.dir
+/home/finzarosalia14/Unity-ImGUI-Android/build/arm64-v8a/dobby/external/logging/CMakeFiles/logging.dir
+/home/finzarosalia14/Unity-ImGUI-Android/build/arm64-v8a/dobby/external/logging/CMakeFiles/edit_cache.dir
+/home/finzarosalia14/Unity-ImGUI-Android/build/arm64-v8a/dobby/external/logging/CMakeFiles/rebuild_cache.dir
+/home/finzarosalia14/Unity-ImGUI-Android/build/arm64-v8a/dobby/builtin-plugin/SymbolResolver/CMakeFiles/symbol_resolver.dir
+/home/finzarosalia14/Unity-ImGUI-Android/build/arm64-v8a/dobby/builtin-plugin/SymbolResolver/CMakeFiles/edit_cache.dir
+/home/finzarosalia14/Unity-ImGUI-Android/build/arm64-v8a/dobby/builtin-plugin/SymbolResolver/CMakeFiles/rebuild_cache.dir

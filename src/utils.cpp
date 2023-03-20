@@ -1,4 +1,6 @@
 #include "includes/utils.h"
+#include <android/input.h>
+#include <android/keycodes.h>
 
 namespace utils{
     bool is_library_loaded(const char *lib) {
