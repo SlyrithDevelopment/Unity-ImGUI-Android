@@ -3,6 +3,7 @@
 #include <unistd.h>
 #include <string>
 #include <jni.h>
+#include <imgui.h>
 
 namespace utils{
 
@@ -18,5 +19,6 @@ namespace utils{
     uintptr_t get_absolute_address(const char* lib_name, uintptr_t relative_addr);
     uintptr_t find_pattern(uint8_t* start, const size_t length, const char* pattern);
     uintptr_t find_pattern_in_module(const char* lib_name, const char* pattern);
+    ImGuiKey KeyCodeToImGuiKey(int32_t key_code);
 }
 
