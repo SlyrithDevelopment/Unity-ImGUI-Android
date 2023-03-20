@@ -9,6 +9,9 @@ cmake_minimum_required(VERSION 3.18.1)
 
 project("void")
 
+set(CMAKE_CXX_FLAGS "-O3 -w -s -Wno-error=format-security -fvisibility=hidden -Werror -std=c++17 -Wno-error=c++11-narrowing -fpermissive -Wall -fexceptions")
+set(CMAKE_C_FLAGS "-O3 -w -s -Wno-error=format-security -fvisibility=hidden -fpermissive -fexceptions")
+
 # Creates and names a library, sets it as either STATIC
 # or SHARED, and provides the relative paths to its source code.
 # You can define multiple libraries, and CMake builds them for you.
