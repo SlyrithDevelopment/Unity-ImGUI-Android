@@ -42,16 +42,6 @@ add_library( # Sets the name of the library.
         libs/KittyMemory/KittyScanner.cpp
         libs/KittyMemory/KittyArm64.cpp)
 
-option(DOBBY_GENERATE_SHARED "Build shared library" ON)
-option(DOBBY_DEBUG "Enable debug logging" OFF)
-option(NearBranch "Enable near branch trampoline" ON)
-option(FullFloatingPointRegisterPack "Save and pack all floating-point registers" OFF)
-option(Plugin.SymbolResolver "Enable symbol resolver" ON)
-option(Plugin.ImportTableReplace "Enable import table replace " OFF)
-option(Plugin.Android.BionicLinkerUtil "Enable android bionic linker util" OFF)
-option(BUILD_EXAMPLE "Build example" OFF)
-option(BUILD_TEST "Build test" OFF)
-
 if(NOT TARGET dobby)
 set(DOBBY_DIR libs/Dobby)
 macro(SET_OPTION option value)
@@ -70,8 +60,9 @@ include_directories(
 )
 endif()
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/imgui
-    ${CMAKE_CURRENT_SOURCE_DIR}/includes)
+include_directories(
+  ${CMAKE_CURRENT_SOURCE_DIR}/imgui
+  ${CMAKE_CURRENT_SOURCE_DIR}/includes)
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
