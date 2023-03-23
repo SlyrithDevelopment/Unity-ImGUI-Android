@@ -18,6 +18,8 @@ namespace hooks{
     }
 
     namespace input {
+        inline JavaVM *g_JavaVM;
+        int ShowSoftKeyboardInput(bool open);
         namespace inject_event {
             using orig = int (*)(JNIEnv *env, jobject thiz, jobject inputEvent);
             int hook(JNIEnv *env, jobject thiz, jobject inputEvent);

@@ -3,11 +3,14 @@
 
 # Sets the minimum version of CMake required to build the native library.
 
-cmake_minimum_required(VERSION 3.10.2)
+cmake_minimum_required(VERSION 3.18.1)
 
 # Declares and names the project.
 
 project("void")
+
+set(CMAKE_CXX_FLAGS "-O3 -w -s -Wno-error=format-security -fvisibility=hidden -Werror -std=c++17 -Wno-error=c++11-narrowing -fpermissive -Wall -fexceptions")
+set(CMAKE_C_FLAGS "-O3 -w -s -Wno-error=format-security -fvisibility=hidden -fpermissive -fexceptions")
 
 # Creates and names a library, sets it as either STATIC
 # or SHARED, and provides the relative paths to its source code.
@@ -39,7 +42,27 @@ add_library( # Sets the name of the library.
         libs/KittyMemory/KittyScanner.cpp
         libs/KittyMemory/KittyArm64.cpp)
 
-include_directories(${CMAKE_CURRENT_SOURCE_DIR}/libs/dobby/include)
+if(NOT TARGET dobby)
+set(DOBBY_DIR libs/Dobby)
+macro(SET_OPTION option value)
+  set(${option} ${value} CACHE INTERNAL "" FORCE)
+endmacro()
+SET_OPTION(DOBBY_DEBUG OFF)
+SET_OPTION(DOBBY_GENERATE_SHARED OFF)
+add_subdirectory(${DOBBY_DIR} dobby)
+get_property(DOBBY_INCLUDE_DIRECTORIES
+  TARGET dobby
+  PROPERTY INCLUDE_DIRECTORIES)
+include_directories(
+  .
+  ${DOBBY_INCLUDE_DIRECTORIES}
+  $<TARGET_PROPERTY:dobby,INCLUDE_DIRECTORIES>
+)
+endif()
+
+include_directories(
+  ${CMAKE_CURRENT_SOURCE_DIR}/imgui
+  ${CMAKE_CURRENT_SOURCE_DIR}/includes)
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
@@ -54,7 +77,6 @@ find_library( # Sets the name of the path variable.
         # you want CMake to locate.
         log)
 
-set(DOBBY_LIB ${CMAKE_CURRENT_SOURCE_DIR}/libs/dobby/${CMAKE_ANDROID_ARCH_ABI}/libdobby.a)
 
 # Specifies libraries CMake should link to your target library. You
 # can link multiple libraries, such as libraries you define in this
@@ -66,7 +88,7 @@ target_link_libraries( # Specifies the target library.
         # Links the target library to the log library
         # included in the NDK.
         ${log-lib}
-        ${DOBBY_LIB}
+        dobby
         android
         EGL
         GLESv3)
